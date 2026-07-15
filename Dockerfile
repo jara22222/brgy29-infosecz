@@ -30,7 +30,7 @@ RUN npm ci
 COPY . .
 
 # Pass ReCAPTCHA Site Key to Vite during build
-ENV VITE_RECAPTCHA_SITEKEY="6LfXKVUtAAAAALuIMsEkqYXlHfQz_HkJKNoGtj1K"
+ENV VITE_RECAPTCHA_SITEKEY="6LeN6vMsAAAAAOFSi2ROPOdRkPrsqKty28oaKY49"
 
 # Build Vite assets (Wayfinder will now have PHP and the vendor directory to run artisan)
 RUN npm run build
