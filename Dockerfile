@@ -11,7 +11,7 @@ RUN npm ci
 # Copy application files needed for build
 COPY resources/ ./resources/
 COPY public/ ./public/
-COPY tailwind.config.js vite.config.ts tsconfig.json components.json ./ 
+COPY vite.config.ts tsconfig.json components.json ./ 
 # Since Tailwind 4 uses vite plugin, the config might just be in vite.config.ts or css, 
 # but copying all necessary root files is safe.
 # Actually, just copy everything to be safe since Vite might look at various files.
