@@ -26,6 +26,10 @@ RUN npm run build
 FROM composer:2.7 AS backend
 WORKDIR /app
 
+# The php-forge/foxy plugin requires Node.js/npm to be installed
+RUN apk add --no-cache nodejs npm
+COPY package.json package-lock.json ./
+
 COPY composer.json composer.lock ./
 # Install dependencies without dev packages and scripts
 RUN composer install --no-dev --no-scripts --prefer-dist --optimize-autoloader
