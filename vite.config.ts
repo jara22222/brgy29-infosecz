@@ -1,0 +1,34 @@
+import tailwindcss from '@tailwindcss/vite';
+import react from '@vitejs/plugin-react';
+import laravel from 'laravel-vite-plugin';
+import { defineConfig } from 'vite';
+
+// Detect if running on Vercel
+const isVercel = process.env.VERCEL === '1';
+const isProduction = process.env.NODE_ENV === 'production';
+
+// Plugins that always load
+const plugins: any[] = [
+    laravel({
+        input: ['resources/css/app.css', 'resources/js/app.tsx'],
+        ssr: isProduction ? undefined : 'resources/js/ssr.tsx',
+        refresh: true,
+    }),
+    react(),
+    tailwindcss(),
+];
+
+// Enable Wayfinder so '@/routes' and route helpers are generated during build
+const { wayfinder } = await import('@laravel/vite-plugin-wayfinder');
+plugins.push(
+    wayfinder({
+        formVariants: true,
+    }),
+);
+
+export default defineConfig({
+    plugins,
+    esbuild: {
+        jsx: 'automatic',
+    },
+});
