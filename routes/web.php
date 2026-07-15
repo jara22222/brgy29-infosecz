@@ -128,3 +128,8 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
+
+Route::get('/seed-my-database', function () {
+    \Illuminate\Support\Facades\Artisan::call('db:seed', ['--force' => true]);
+    return 'Database Seeded Successfully! You can now log in.';
+});
